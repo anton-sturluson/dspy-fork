@@ -81,7 +81,19 @@ def generate_instruction_class(
 ):
     class GenerateSingleModuleInstruction(dspy.Signature):
         (
-            """Use the information below to learn about a task that we are trying to solve using calls to an LM, then generate a new instruction that will be used to prompt a Language Model to better solve the task."""
+            """
+            Use the information below to learn about a task that we are trying to solve 
+            using calls to an LM, then generate a new instruction that will be used to 
+            prompt a Language Model to better solve the task.
+
+            Read the inputs carefully and identify the input format and infer detailed task
+            description about the task I wish to solve with the assistant.
+            Read all the assistant responses and the corresponding feedback. Identify all
+            niche and domain specific factual information about the task and include it in
+            the instruction, as a lot of it may not be available to the assistant in the
+            future. The assistant may have utilized a generalizable strategy to solve the
+            task, if so, include that in the instruction as well.
+            """
         )
         if use_dataset_summary:
             dataset_description = dspy.InputField(
